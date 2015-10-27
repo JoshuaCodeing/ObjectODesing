@@ -1,0 +1,157 @@
+/**
+ * print out the order
+ * 
+ * @author (Joshua Joseph) 
+ * @version (a version number or a date)
+ */
+public class finalSandwish
+{
+    public static void main(String[] args){
+    System.out.println("===============Order #1====================\n");
+    Sandwish s1 = new lettuce(new ham(new cheeseSandwish()));
+    System.out.println("Your Sandwitch: " +s1.description());
+    System.out.println("Cost: "+ s1.price());
+    
+    System.out.println("===============Order #2====================\n");
+    Sandwish s2 = new lettuce(new beef(new cheeseSandwish()));
+    System.out.println("Your Sandwitch: " +s2.description());
+    System.out.println("Cost: "+ s2.price());
+    
+     System.out.println("===============Order #3====================\n");
+    Sandwish s3 = new lettuce(new chicken(new cheeseSandwish()));
+    System.out.println("Your Sandwitch: " +s3.description());
+    System.out.println("Cost: "+ s3.price());
+    
+    System.out.println("===============Order #3====================\n");
+    Sandwish s4 = new lettuce(new cheeseSandwish());
+    System.out.println("Your Sandwitch: " +s4.description());
+    System.out.println("Cost: "+ s4.price());
+    }
+}
+public interface Sandwish
+{
+   public String description();
+   public double price();
+}
+
+/**
+ * The basic sandwitch the you can get all sandwitches start here
+ * 
+ * @author (Joshua Joseph) 
+ * @version (a version number or a date)
+ */
+public class cheeseSandwish implements Sandwish
+{
+    public String description(){
+        return "White Bread with Cheese";
+    
+    }
+    public double price(){
+    
+        return 2.50;
+    }
+}
+/**
+ * This get the toppings, the des and price was defined in cheesesandwitch
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class additionalTopping implements Sandwish
+{
+    Sandwish normal;
+    public additionalTopping(Sandwish newSandwish){
+        normal = newSandwish;
+    }
+        public String description()
+        {
+            return normal.description();
+        }
+        public double price()
+        {
+            return normal.price();
+        }
+    
+    
+}
+
+/**
+ * topping and price
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class chicken extends additionalTopping
+{
+    public chicken(Sandwish newSandwish){
+        super(newSandwish);
+    }
+    public String description()
+        {
+            return normal.description()+",Chicken";
+        }
+        public double price()
+        {
+            return normal.price() + .75;
+        }
+}
+/**
+ * Write a description of class ham here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class ham extends additionalTopping
+{
+     public ham(Sandwish newSandwish){
+        super(newSandwish);
+    }
+    public String description()
+        {
+            return normal.description()+" Ham";
+        }
+        public double price()
+        {
+            return normal.price() + 1.00;
+        }
+}
+/**
+ * Write a description of class lettuce here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class lettuce extends additionalTopping
+{
+    public lettuce(Sandwish newSandwish){
+        super(newSandwish);
+    }
+    public String description()
+        {
+            return normal.description()+" lettuce";
+        }
+        public double price()
+        {
+            return normal.price() + 1.50;
+        }
+}
+/**
+ * Write a description of class beef here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class beef extends additionalTopping
+{
+    public beef(Sandwish newSandwish){
+        super(newSandwish);
+    }
+    public String description()
+        {
+            return normal.description()+",Beef";
+        }
+        public double price()
+        {
+            return normal.price() + 1.00;
+        }
+}
